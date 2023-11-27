@@ -3,7 +3,9 @@ import Register from "./pages/register/registerForm"
 import Game from "./pages/game/game";
 import Menu from "./components/elements/menu"
 import Login from "./pages/login/login";
+import GamePage from "./pages/gamePage/gamePage";
 import {useEffect, useState} from "react";
+import './App.css';
 
 function App() {
 
@@ -29,7 +31,8 @@ function App() {
         <div>
             <Menu user={user} setUser={setUser}/>
             <Routes>
-                <Route path="/" element={<Register/>}/>
+                <Route path="/"/>
+                <Route path="/gamePage" element={<GamePage/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/game" element={<Game/>}/>
                 <Route path="/login" element={<Login/>}/>
