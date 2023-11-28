@@ -11,7 +11,7 @@ export function GameDataLine({ name, value }) {
 }
 
 const App = (props) => {
-    const game = 1;//props.game
+    const game = 7;//props.game
     const [gameData, setGameData] = useState([])
     useEffect(() => {
         getGameData()
@@ -44,7 +44,8 @@ const App = (props) => {
           <GameDataLine name='Genre' value={gameData.genre} />
           <GameDataLine name='Release date' value={new Date(gameData.release_date).toLocaleString()} />
           <GameDataLine name='Developer' value={gameData.developer} />
-
+          <GameDataLine name='Age rating' value={gameData.age_rating} />
+          <GameDataLine name='Publisher' value={gameData.publisher} />
       </div>
     );
 }
