@@ -3,6 +3,7 @@ import Register from "./pages/register/registerForm"
 import Game from "./pages/game/game";
 import Menu from "./components/elements/menu"
 import Login from "./pages/login/login";
+import Main from "./pages/main/main";
 import {useEffect, useState} from "react";
 
 function App() {
@@ -33,9 +34,13 @@ function App() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/game" element={<Game/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/main" element={<Main/>}/>
             </Routes>
         </div>
     );
 }
 
+function nothing() {
+    
+}
 export default App;
