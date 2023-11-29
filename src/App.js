@@ -32,7 +32,7 @@ function App() {
             <Menu user={user} setUser={setUser}/>
             <Routes>
                 <Route path="/"/>
-                <Route path="/gamePage" element={<GamePage/>}/>
+                <Route user={user} setUser={setUser} path="/gamePage" element={<GamePage/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/game" element={<Game/>}/>
                 <Route path="/login" element={<Login/>}/>

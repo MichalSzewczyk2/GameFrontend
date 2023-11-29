@@ -11,7 +11,7 @@ export function GameDataLine({name, value}) {
 }
 
 const App = (props) => {
-    const game = 7;//props.game
+    const game = 11;//props.game
     const [gameData, setGameData] = useState([])
     useEffect(() => {
         getGameData()
@@ -35,22 +35,30 @@ const App = (props) => {
 
     }
 
+    function addToLibrary(id){
+        console.log("user: " + props.user + ", game: " + id);
+    }
+
+    function addToWishlist(id){
+        console.log("user: " + props.user + ", game: " + id);
+    }
+
 
     return (
         <div className='game_page'>
 
-            <img className='image' src={gameData.cover}/>
+            <img className='image' src={gameData.cover} alt='background'/>
 
             <div className='gradient'>
 
             </div>
             <div className='data'>
                 <div className='page'>
-                    <h1> {gameData.title} </h1>
+                    <h1 className='title'> {gameData.title} </h1>
                     <div className='details'>
                         <GameDataLine name='Platform' value={gameData.platform}/>
                         <GameDataLine name='Genre' value={gameData.genre}/>
-                        <GameDataLine name='Release date' value={new Date(gameData.release_date).toLocaleString()}/>
+                        <GameDataLine name='Release date' value={new Date(gameData.release_date).toLocaleString().substring(0,10)}/>
                         <GameDataLine name='Developer' value={gameData.developer}/>
                         <GameDataLine name='Age rating' value={gameData.age_rating}/>
                         <GameDataLine name='Publisher' value={gameData.publisher}/>
@@ -58,9 +66,13 @@ const App = (props) => {
                     </div>
                 </div>
                 <div className='image_side'>
-                    <img className='cover' src={gameData.cover}/>
-                    <button className="button-21" role="button">Add to wishlist</button>
-                    <button className="button-21" role="button">Add to library</button>
+                    <img className='cover' src={gameData.cover} alt='game cover'/>
+                    <button className="button-21" role="button" onClick={() => {
+                        addToLibrary(gameData.id)
+                    }}>Add to wishlist</button>
+                    <button className="button-21" role="button" onClick={() => {
+                        addToWishlist(gameData.id)
+                    }}>Add to library</button>
                 </div>
             </div>
             <div className='bottom'></div>
