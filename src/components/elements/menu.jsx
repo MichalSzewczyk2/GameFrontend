@@ -11,6 +11,7 @@ export function Menu(props) {
     const menuItems = [
         { name: 'Home', path: '/' },
         { name: 'Games', path: '/game' },
+        { name: 'Add Game', path: '/gameAddition' }
     ]
 
 

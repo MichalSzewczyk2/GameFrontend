@@ -4,6 +4,7 @@ import Game from "./pages/game/game";
 import Menu from "./components/elements/menu"
 import Login from "./pages/login/login";
 import GamePage from "./pages/gamePage/gamePage";
+import GameAddition from "./pages/admin/gameAdditon";
 import {useEffect, useState} from "react";
 import './App.css';
 
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/game" element={<Game/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/gameAddition" element={<GameAddition/>}/>
             </Routes>
         </div>
     );
