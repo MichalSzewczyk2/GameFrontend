@@ -60,6 +60,7 @@
 }
 
 .game_card_line_name {
+    font-weight: bold;
     float: left;
     width: 30%;
     text-align: left;
@@ -77,6 +78,10 @@
     display: flex;
     flex-direction: column;
     max-width: 30%;
+}
+
+.title {
+    font-size: 3rem;
 }
 
 
