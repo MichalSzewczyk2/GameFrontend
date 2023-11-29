@@ -39,8 +39,4 @@ function App() {
         </div>
     );
 }
-
-function nothing() {
-    
-}
 export default App;
