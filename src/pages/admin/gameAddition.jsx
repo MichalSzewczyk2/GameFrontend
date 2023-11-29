@@ -23,17 +23,23 @@ const App = () => {
     const [description, setDescription] = useState(null);
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, setError] = useState('');
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+    const [imageLink, setImageLink] = useState()
 
     async function handleSubmitGenerate(e) {
 
     }
 
     async function handleSubmitAdd(e) {
-        console.log('submitting form', { title, platform, genre,releaseDate, developer, ageRating, publisher, publisher, description })
+        console.log('submitting form', {
+            title,
+            platform,
+            genre,
+            releaseDate,
+            developer,
+            ageRating,
+            publisher,
+            description
+        })
         const response = await fetch('/api/game', { //???
             method: 'POST',
             headers: {
@@ -42,7 +48,8 @@ const App = () => {
             body: JSON.stringify({
 ///TODO: add
             }),
-        const body = await response.json()
+        });
+        const body = await response.json();
 
         if (!response.ok) {
             setError(body.description)
@@ -110,7 +117,7 @@ const App = () => {
             </div>
             <div className='game_addition_right_side'>
                 <form className='addition_preview' onSubmit={handleSubmitAdd}>
-                <button type='generate'>Confirm</button>
+                    <button type='generate'>Confirm</button>
                 </form>
             </div>
         </div>

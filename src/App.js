@@ -4,7 +4,7 @@ import Game from "./pages/game/game";
 import Menu from "./components/elements/menu"
 import Login from "./pages/login/login";
 import GamePage from "./pages/gamePage/gamePage";
-import GameAddition from "./pages/admin/gameAdditon";
+import GameAddition from "./pages/admin/gameAddition";
 import {useEffect, useState} from "react";
 import './App.css';
 
