@@ -55,27 +55,33 @@
     margin-bottom: 2rem;
 }
 
-.deytails {
+.details {
     display: table;
-
 }
 
 .game_card_line_name {
+    font-weight: bold;
     float: left;
     width: 30%;
     text-align: left;
+    font-size: 1.5rem;
 }
 
 .game_card_line_value {
     float: left;
     width: 50%;
     text-align: left;
+    font-size: 1.5rem;
 }
 
 .image_side {
     display: flex;
     flex-direction: column;
     max-width: 30%;
+}
+
+.title {
+    font-size: 3rem;
 }
 
 
