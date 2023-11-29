@@ -1,0 +1,17 @@
+.game-filter-sort{
+    float: right;
+    margin-top: 2rem;
+}
+
+.select {
+    margin-right: 2rem;
+    width: 10vw;
+    height: 3rem;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    color: #e3dfec;
+}
+
+.input-label {
+    color: #e3dfec;
+    font-weight: bold;
+}

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import './gamePage.css'
+import {useLocation} from "react-router-dom";
 
 export function GameDataLine({name, value}) {
     return (
@@ -11,8 +12,10 @@ export function GameDataLine({name, value}) {
 }
 
 const App = (props) => {
-    const game = 11;//props.game
+
     const [gameData, setGameData] = useState([])
+    const location = useLocation()
+    const game = location.state?.gameId;//props.game
     useEffect(() => {
         getGameData()
     }, [])
