@@ -8,8 +8,8 @@ import MenuItem from '@mui/material/MenuItem'
 import Checkbox from "@mui/material/Checkbox";
 import Chip from '@mui/material/Chip';
 import ListItemText from '@mui/material/ListItemText';
-import "./game.css"
-
+import { Table } from '../components/table'
+import './game.css';
 
 const App = () => {
 
@@ -75,7 +75,7 @@ const App = () => {
                         onChange={handleAgeChange}
                         input={<OutlinedInput id='select-multiple-chip' label='Brand'/>}
                         renderValue={selected =>
-                            <Box>
+                            <Box className='boxx'>
                                 {selected.map(value =>
                                     <Chip key={value} label={value}/>,
                                 )}
@@ -97,6 +97,7 @@ const App = () => {
                 <FormControl className='game-sort form-control'>
                     <InputLabel className='input-label' id='sort-by-type'>Sort by</InputLabel>
                     <Select
+                        className='select'
                         labelId='sort-by-type'
                         id='sort-by-type'
                         value={sortType}
@@ -114,11 +115,7 @@ const App = () => {
                 </FormControl>
             </div>
             <div>
-                {filteredData.map((item) => (
-                    <ul key={item.id}>
-                        <div>{item.title}, {item.platform}, {item.description}, {item.system_requirements}, {item.genre}, {item.release_date}, {item.developer}, {item.age_rating}, {item.publisher}, {item.addition_date}</div>
-                    </ul>
-                ))}
+                <Table data={filteredData}></Table>
             </div>
         </div>
     );
