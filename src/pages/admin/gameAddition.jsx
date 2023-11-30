@@ -1,13 +1,4 @@
 import React, {useState, useEffect} from "react";
-import InputLabel from '@mui/material/InputLabel'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
-import Box from '@mui/material/Box'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import MenuItem from '@mui/material/MenuItem'
-import Checkbox from "@mui/material/Checkbox";
-import Chip from '@mui/material/Chip';
-import ListItemText from '@mui/material/ListItemText';
 import './gameAddition.css'
 import {GameDataLine} from "../gamePage/gamePage";
 
@@ -51,7 +42,6 @@ const App = () => {
             title,
             platform,
             systemRequirements,
-            releaseDate,
             genre,
             releaseDate,
             developer,

@@ -4,11 +4,14 @@ import Game from "./pages/game/game";
 import Menu from "./components/elements/menu"
 import Login from "./pages/login/login";
 import GamePage from "./pages/gamePage/gamePage";
+import GameAddition from "./pages/admin/gameAddition";
 import {useEffect, useState} from "react";
 import './App.css';
 import {useUser} from "./contexts/UserContext";
 import ManageUsers from "./pages/manageUsers/manageUsers"
 import {get} from "./utils/apiActions";
+import GameEdition from "./pages/admin/gameEdition";
+import GameList from "./pages/admin/gameList";
 
 function App() {
     const {user, login} = useUser();

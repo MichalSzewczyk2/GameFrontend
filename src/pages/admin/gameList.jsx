@@ -10,6 +10,7 @@ import Chip from '@mui/material/Chip';
 import ListItemText from '@mui/material/ListItemText';
 import { TableWithButtons } from '../components/tableWithButtons'
 import '../game/game.css';
+import {get} from "../../utils/apiActions";
 
 const App = () => {
 
@@ -35,12 +36,6 @@ const App = () => {
         )
     }
 
-    const fetchData = async () => {
-        const response = await fetch("http://127.0.0.1:8081/game/");
-        const data = await response.json();
-        setData(data);
-    };
-
     useEffect(() => {
         const sortGames = (a, b) => {
             if (sortType === 'alpha_asc') return a.title.toUpperCase().localeCompare(b.title.toUpperCase())
@@ -53,7 +48,9 @@ const App = () => {
     }, [sortType]);
 
     useEffect(() => {
-        fetchData();
+        get('game').then((data) => {
+            setData(data);
+        });
     }, []);
 
     const filteredData = data.filter(
