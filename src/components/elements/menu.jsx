@@ -10,7 +10,7 @@ export function Menu(props) {
     const navigate = useNavigate()
 
     const menuItems = [
-        { name: 'Home', path: '/' },
+        { name: 'Home', path: '/main' },
         { name: 'Games', path: '/game' },
     ]
 
