@@ -1,0 +1,117 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.game_addition_whole {
+    display: flex;
+    height: 100%;
+}
+.game_addition_left_side {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #292c3d;
+    padding: 20px;
+    border-top: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+}
+
+.save_me{
+    flex: 7;
+    min-height: 100%;
+}
+
+.save_me_but_left{
+    flex: 3;
+    min-height: 100%;
+}
+
+.game_addition_right_side {
+    border-top: 2px solid #ccc;
+    border-left: 2px solid #ccc;
+    justify-content: center;
+    align-items: center;
+    background-color: #292c3d;
+    padding: 20px;
+    height: 100%;
+}
+
+.addition_preview{
+    margin-top: 50vh;
+}
+.addition_form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.errorMessage {
+    color: red;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Style for the age_rating select box */
+#age_rating {
+    width: 50px; /* Adjust the width as needed, considering the margin-left of 10px */
+}
+
+.button-21 {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 200px;
+    min-width: 140px;
+    padding: 19px 24px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.button-21:active,
+.button-21:hover {
+    outline: 0;
+}
+
+@media (min-width: 768px) {
+    .button-21 {
+        font-size: 24px;
+        min-width: 196px;
+    }
+}
+#systemRequirements,
+#description {
+    height: 80px; /* Adjust the height as needed */
+    resize: vertical; /* Allow vertical resizing */
+}

@@ -8,6 +8,8 @@ import MenuItem from '@mui/material/MenuItem'
 import Checkbox from "@mui/material/Checkbox";
 import Chip from '@mui/material/Chip';
 import ListItemText from '@mui/material/ListItemText';
+import './gameAddition.css'
+import {GameDataLine} from "../gamePage/gamePage";
 
 
 const App = () => {
@@ -18,21 +20,30 @@ const App = () => {
     const [genre, setGenre] = useState(null);
     const [releaseDate, setReleaseDate] = useState(null);
     const [developer, setDeveloper] = useState(null);
-    const [ageRating, setAgeRating] = useState(null);
+    const [ageRating, setAgeRating] = useState(3);
     const [publisher, setPublisher] = useState(null);
     const [description, setDescription] = useState(null);
+    const [systemRequirements, setSystemRequirements] = useState(null);
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, setError] = useState('');
     const [imageLink, setImageLink] = useState()
+    const [generatePressed, setGeneratePressed] = useState(false);
+    let gameData;
 
     async function handleSubmitGenerate(e) {
-
+        e.preventDefault();
+        setGeneratePressed(true);
     }
 
     async function handleSubmitAdd(e) {
+        let additionDate = Math.floor(new Date().getTime() / 1000);
+        let releaseTimeEpoch = Math.floor(new Date(releaseDate).getTime() / 1000);
+        e.preventDefault();
         console.log('submitting form', {
             title,
             platform,
+            systemRequirements,
+            releaseDate,
             genre,
             releaseDate,
             developer,
@@ -40,13 +51,23 @@ const App = () => {
             publisher,
             description
         })
-        const response = await fetch('/api/game', { //???
+        const response = await fetch("http://127.0.0.1:8081/game/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-///TODO: add
+                'title': title,
+                'platform': platform,
+                'description': description,
+                'system_requirements': systemRequirements,
+                'genre': genre,
+                'release_date': releaseTimeEpoch,
+                'developer': developer,
+                'age_rating': ageRating,
+                'publisher': publisher,
+                'addition_date': additionDate,
+                'cover': imageLink,
             }),
         });
         const body = await response.json();
@@ -62,63 +83,107 @@ const App = () => {
     }
 
     return (
-        <div>
-            <div className='game_addition_left_side'>
-                <h2>Add game</h2>
-                <form className='addition_form' onSubmit={handleSubmitGenerate}>
+        <div className='game_addition_whole'>
+            <div className="save_me_but_left">
+                <div className='game_addition_left_side'>
+                    <h2>Add game</h2>
+                    <form className='addition_form' onSubmit={handleSubmitGenerate}>
 
-                    <p className='errorMessage'>{error}</p>
+                        <p className='errorMessage'>{error}</p>
 
-                    <label htmlFor='image_link'>Image link</label>
-                    <input type='text' id='image_link' name='image_link' value={imageLink}
-                           onChange={e => setImageLink(e.target.value)}/>
-
-                    <label htmlFor='title'>Title</label>
-                    <input type='text' id='title' name='title' value={title} onChange={e => setTitle(e.target.value)}/>
-
-                    <label htmlFor='genre'>Genre</label>
-                    <input type='text' id='genre' name='genre' value={genre} onChange={e => setGenre(e.target.value)}/>
-
-                    <label htmlFor='genre'>Genre</label>
-                    <input type='text' id='genre' name='genre' value={genre} onChange={e => setGenre(e.target.value)}/>
-
-                    <label htmlFor='platform'>Platform</label>
-                    <input type='text' id='platform' name='platform' value={platform}
-                           onChange={e => setPlatform(e.target.value)}/>
-
-                    <label htmlFor='release_date'>Release date</label>
-                    <input type='text' id='release_date' name='release_date' value={releaseDate}
-                           onChange={e => setReleaseDate(e.target.value)}/>
-
-                    <label htmlFor='developer'>Developer</label>
-                    <input type='text' id='developer' name='developer' value={developer}
-                           onChange={e => setDeveloper(e.target.value)}/>
-
-                    <label htmlFor='age_rating'>Age rating</label>
-                    <select id='age_rating' name='age_rating' value={ageRating}
-                            onChange={e => setAgeRating(e.target.value)}>
-                        <option value={3}>3</option>
-                        <option value={7}>7</option>
-                        <option value={12}>12</option>
-                        <option value={16}>16</option>
-                        <option value={18}>18</option>
-                    </select>
-
-                    <label htmlFor='publisher'>Publisher</label>
-                    <input type='text' id='publisher' name='publisher' value={publisher}
-                           onChange={e => setPublisher(e.target.value)}/>
-
-                    <label htmlFor='description'>Description</label>
-                    <input type='text' id='description' name='description' value={description}
-                           onChange={e => setDescription(e.target.value)}/>
-
-                    <button type='generate'>Generate</button>
-                </form>
+                        <label htmlFor='image_link'>Image link</label>
+                        <input type='text' id='image_link' name='image_link' value={imageLink}
+                               onChange={e => setImageLink(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='title'>Title</label>
+                        <input type='text' id='title' name='title' value={title}
+                               onChange={e => setTitle(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='genre'>Genre</label>
+                        <input type='text' id='genre' name='genre' value={genre}
+                               onChange={e => setGenre(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='systemRequirements'>System requirements</label>
+                        <textarea type='text' id='systemRequirements' name='systemRequirements'
+                                  value={systemRequirements} onChange={e => setSystemRequirements(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='platform'>Platform</label>
+                        <input type='text' id='platform' name='platform' value={platform}
+                               onChange={e => setPlatform(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='release_date'>Release date</label>
+                        <input type='date' id='release_date' name='release_date' value={releaseDate}
+                               onChange={e => setReleaseDate(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='developer'>Developer</label>
+                        <input type='text' id='developer' name='developer' value={developer}
+                               onChange={e => setDeveloper(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='age_rating'>Age rating</label>
+                        <select id='age_rating' name='age_rating' value={ageRating}
+                                onChange={e => setAgeRating(e.target.value)}>
+                            <option value={3}>3</option>
+                            <option value={7}>7</option>
+                            <option value={12}>12</option>
+                            <option value={16}>16</option>
+                            <option value={18}>18</option>
+                        </select>
+                        <br/>
+                        <label htmlFor='publisher'>Publisher</label>
+                        <input type='text' id='publisher' name='publisher' value={publisher}
+                               onChange={e => setPublisher(e.target.value)}/>
+                        <br/>
+                        <label htmlFor='description'>Description</label>
+                        <textarea type='text' id='description' name='description' value={description}
+                                  onChange={e => setDescription(e.target.value)}/>
+                        <br/>
+                        <button className="button-21" type='generate'>Generate</button>
+                    </form>
+                </div>
             </div>
-            <div className='game_addition_right_side'>
-                <form className='addition_preview' onSubmit={handleSubmitAdd}>
-                    <button type='generate'>Confirm</button>
-                </form>
+            <div className="save_me">
+                <div className='game_addition_right_side'>
+                    {generatePressed ? (
+                        <form className='addition_preview' onSubmit={handleSubmitAdd}>
+                            <div className="preview">
+                                <div className='game_page'>
+
+                                    <img className='image' src={gameData.cover} alt='background'/>
+
+                                    <div className='gradient'>
+
+                                    </div>
+                                    <div className='data'>
+                                        <div className='page'>
+                                            <h1 className='title'> {gameData.title} </h1>
+                                            <div className='details'>
+                                                <GameDataLine name='Platform' value={gameData.platform}/>
+                                                <GameDataLine name='Genre' value={gameData.genre}/>
+                                                <GameDataLine name='Release date' value={new Date(gameData.release_date).toLocaleString().substring(0,10)}/>
+                                                <GameDataLine name='Developer' value={gameData.developer}/>
+                                                <GameDataLine name='Age rating' value={gameData.age_rating}/>
+                                                <GameDataLine name='Publisher' value={gameData.publisher}/>
+                                                <GameDataLine name='Description' value={gameData.description}/>
+                                            </div>
+                                        </div>
+                                        <div className='image_side'>
+                                            <img className='cover' src={gameData.cover} alt='game cover'/>
+                                            <button className="button-21" role="button">Add to wishlist</button>
+                                            <button className="button-21" role="button">Add to library</button>
+                                        </div>
+                                    </div>
+                                    <div className='bottom'></div>
+
+                                </div>
+                            </div>
+                            <button className="button-21" type='generate'>Confirm</button>
+                        </form>
+                    ) : (
+                        <div className="preview">
+                            <p>Press "Generate" to see the preview</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
