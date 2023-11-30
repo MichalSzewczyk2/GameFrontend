@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from "react";
+import {get} from "../../utils/apiActions";
 
 const App = () => {
 
     const [data, setData] = useState([]);
-    const [data2, setData2] = useState([]);
     const [pages, setPages] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [topRatedGames, setTopRatedGames] = useState([]);
-    const [ratings, setRatings] = useState([]);
-    const averageRatings = [];
     const [topGames, setTopGames] = useState([]);
 
     useEffect(() => {
         async function fetchAndDisplayTopGames() {
-            const response = await fetch('http://127.0.0.1:8080/review');
-            const data = await response.json();
+            let data = [];
+
+            get('review').then((response) => {
+                data = response;
+            })
 
             // Obliczam średnią ocenę dla każdej gry
             const ratings = {};
@@ -54,16 +54,17 @@ const App = () => {
 
 
         async function fetchData() {
-            const response = await fetch('http://127.0.0.1:8080/game/premieres/p');
-            const data = await response.json();
-            setData(data);
+
+            get('game/premieres/p').then((data) => {
+                setData(data);
+            })
 
             const pages = [];
             let howManyPages = 3;
             for (let i = 0; i < data.length; i += 3) {
                 pages.push(data.slice(i, i + 3));
                 howManyPages--;
-                if(howManyPages == 0) {
+                if(howManyPages === 0) {
                     break;
                 }
             }

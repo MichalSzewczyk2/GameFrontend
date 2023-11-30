@@ -9,6 +9,7 @@ import './App.css';
 import {useUser} from "./contexts/UserContext";
 import ManageUsers from "./pages/manageUsers/manageUsers"
 import {get} from "./utils/apiActions";
+import Main from "./pages/main/main";
 
 function App() {
     const {user, login} = useUser();
@@ -28,11 +29,12 @@ function App() {
             <div className="main-layout">
                 <Menu/>
                 <Routes>
-                    <Route path="/"/>
+                    <Route path="/" element={<Main/>}/>
                     <Route path="/gamePage" element={<GamePage/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/game" element={<Game/>}/>
                     <Route path="/login" element={<Login/>}/>
+                    <Route path="/main" element={<Main/>}/>
                     {user?.role === 2 && <Route path="/manage-users" element={<ManageUsers/>}/>}
                 </Routes>
             </div>
