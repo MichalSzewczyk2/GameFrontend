@@ -1,0 +1,89 @@
+.manage-users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+
+  .user-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    border: 1px solid #1a1c28;
+
+
+    .header {
+      font-weight: bold;
+      font-size: larger;
+      border-bottom: 1px solid #1a1c28;
+      background-color: #505570;
+    }
+
+    .user:last-child {
+      border-bottom: none;
+    }
+
+    .user:nth-child(even) {
+      background-color: #272a3d;
+    }
+
+    .user, .header {
+      box-sizing: border-box;
+      align-items: center;
+      padding: 10px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 0.5fr;
+      text-align: start;
+      border-bottom: 1px solid #1a1c28;
+
+      .role {
+        select {
+          margin-left: 10px;
+          width: 100px;
+          height: 30px;
+          border-radius: 4px;
+          border: none;
+          background-color: #505570;
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #646a93;
+          }
+        }
+      }
+
+      .blocked {
+        justify-self: center;
+        min-width: max-content;
+
+        .checkbox {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+
+        button {
+          background-color: #673131;
+          color: white;
+          padding: 10px 15px;
+          margin: 5px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #542828;
+          }
+        }
+
+        input[type="checkbox" i] {
+          margin-left: 10px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
