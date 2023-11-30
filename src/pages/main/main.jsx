@@ -40,32 +40,21 @@ const App = () => {
             // Wybieram 3 najlepsze gry
             const topGames = averageRatings.slice(0, 3);
 
-            //console.log(topGames);
-            let gameResponse = [];
-
-            get(`game`).then((topdata) => {
-                gameResponse = topdata;
-            })
-            
-            console.log(gameResponse);
+            let gameResponse = await get('game');
 
             gameResponse.forEach(game => {
-                console.log('in');
                 for (let i = 0; i < topGames.length; i++) {
+                    console.log(game.id, topGames[i].gameid);
                     if(game.id == topGames[i].gameid) {
-                        topGames[i] = { gameResponse: game.cover, averageRating: topGames[i].averageRating };
+                        topGames[i] = { ...topGames[i], cover: game.cover };
                     }
                 }
             });
-
             
-                console.log('in '+ gameResponse);
-
-
             console.log(topGames);
 
             setTopGames(topGames);
-            }
+        }
 
         async function fetchData() {
             let data = await get('game/premieres/p');
@@ -122,15 +111,26 @@ const App = () => {
             <div>
                 <h1>OUR USERS RECOMENDS:</h1>
                 <div className={"premiere"}>
-                    <span className={"premiere-placeholder"}>
-                {topGames.map((game, index) => (
-                    <div className={"premiere-item"} key={index}>
-                        <div className={"premiere-foto"}><img src={game.cover} alt={game.title}/></div>
-                        <h2>{game.title}</h2>
-                        <p>Średnia ocena: {game.averageRating}</p>
-                    </div>
-                ))}
-                    </span>
+                <span className={"premiere-placeholder"}>
+                    {topGames.map((game, index) => {
+                        let color;
+                        if (game.averageRating >= 7.0) {
+                            color = 'green';
+                        } else if (game.averageRating >= 5.0) {
+                            color = 'yellow';
+                        } else {
+                            color = 'red';
+                        }
+
+                        return (
+                            <div className={"premiere-item"} key={index}>
+                                <div className={"premiere-foto"}><img src={game.cover} alt={game.title}/></div>
+                                <h2>{game.title}</h2>
+                                <h2 style={{ color: color }}>⭐  {game.averageRating}</h2>
+                            </div>
+                        );
+                    })}
+                </span>
                 </div>
                 <br></br>
             </div>
