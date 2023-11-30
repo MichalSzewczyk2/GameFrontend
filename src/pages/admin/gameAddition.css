@@ -38,7 +38,6 @@ body, html {
 }
 
 .addition_preview{
-    margin-top: 50vh;
 }
 .addition_form {
     max-width: 400px;
@@ -114,4 +113,91 @@ textarea {
 #description {
     height: 80px; /* Adjust the height as needed */
     resize: vertical; /* Allow vertical resizing */
+}
+
+
+.preview .game_page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.preview .gradient {
+    background-image: linear-gradient(to bottom, rgba(56, 59, 83, 0), rgba(56, 59, 83, 1));
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 10rem;
+    margin-top: -11rem;
+}
+
+.preview .image {
+    z-index: -1;
+    display: flex;
+    /*margin-bottom: -100%;*/
+    max-height: 40rem;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: 0 0;
+    /*!*-webkit-mask-image: linear-gradient(black, transparent);*!*/
+    /*mask-image: linear-gradient(black, transparent);*/
+}
+
+.preview .bottom {
+    background-color: #383b53;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.preview .data {
+    padding-top: 4rem;
+    padding-bottom: 10rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #383b53;
+}
+
+.preview .page {
+    justify-content: flex-start;
+
+}
+
+.preview .cover {
+    justify-content: center;
+    border-radius: 8px;
+    max-width: 20%;
+    min-width: 196px;
+    margin-left: 15rem;
+    margin-bottom: 2rem;
+}
+
+.preview .details {
+    display: table;
+}
+
+.preview .game_card_line_name {
+    font-weight: bold;
+    float: left;
+    width: 30%;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.preview .game_card_line_value {
+    float: left;
+    width: 50%;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.preview .image_side {
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+}
+
+.preview .title {
+    font-size: 3rem;
 }

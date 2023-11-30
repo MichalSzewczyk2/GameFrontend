@@ -10,9 +10,12 @@ import Chip from '@mui/material/Chip';
 import ListItemText from '@mui/material/ListItemText';
 import './gameAddition.css'
 import {GameDataLine} from "../gamePage/gamePage";
+import {useLocation} from "react-router-dom";
 
 
 const App = () => {
+    const location = useLocation()
+    const game = location.state?.gameId;
 
     const [data, setData] = useState([]);
     const [title, setTitle] = useState(null);
@@ -26,17 +29,47 @@ const App = () => {
     const [systemRequirements, setSystemRequirements] = useState(null);
     const [addSuccess, setAddSuccess] = useState(false);
     const [error, setError] = useState('');
-    const [imageLink, setImageLink] = useState()
+    const [imageLink, setImageLink] = useState(null)
     const [generatePressed, setGeneratePressed] = useState(false);
-    const gameData = {
-        cover : imageLink,
-        genre : genre,
-        developer : developer,
-        release_date : releaseDate,
-        age_rating : ageRating,
-        publisher : publisher,
-        platform : platform,
-        gtitle : title};
+    const [gameData, setGameData] = useState([])
+
+    useEffect(() => {
+        getGameData()
+    }, [])
+
+    useEffect(() => {
+        // Update state variables when gameData changes
+        if (gameData) {
+            setTitle(gameData.title);
+            setPlatform(gameData.platform);
+            setGenre(gameData.genre);
+            setReleaseDate(gameData.release_date);
+            setDeveloper(gameData.developer);
+            setAgeRating(gameData.age_rating);
+            setPublisher(gameData.publisher);
+            setDescription(gameData.description);
+            setSystemRequirements(gameData.system_requirements);
+            setImageLink(gameData.cover);
+        }
+    }, [gameData]);
+
+    function getGameData() {
+        fetch("http://127.0.0.1:8080/game/" + game, {
+            method: 'GET',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((response) => response.json())
+            .then(data => {
+                setGameData(data);
+            })
+            .catch(error => {
+                console.log('Error getting game info', error)
+            })
+
+    }
 
     async function handleSubmitGenerate(e) {
         e.preventDefault();
@@ -60,11 +93,12 @@ const App = () => {
             description
         })
         const response = await fetch("http://127.0.0.1:8080/game/", {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                'id': gameData.id,
                 'title': title,
                 'platform': platform,
                 'description': description,
@@ -94,7 +128,7 @@ const App = () => {
         <div className='game_addition_whole'>
             <div className="save_me_but_left">
                 <div className='game_addition_left_side'>
-                    <h2>Add game</h2>
+                    <h2>Edit game</h2>
                     <form className='addition_form' onSubmit={handleSubmitGenerate}>
 
                         <p className='errorMessage'>{error}</p>
@@ -196,5 +230,4 @@ const App = () => {
         </div>
     );
 }
-
 export default App;
