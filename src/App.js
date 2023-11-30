@@ -7,6 +7,7 @@ import GamePage from "./pages/gamePage/gamePage";
 import {useEffect, useState} from "react";
 import './App.css';
 import {UserProvider, useUser} from "./contexts/UserContext";
+import ManageUsers from "./pages/manageUsers/manageUsers"
 
 function App() {
     const {user, login} = useUser();
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/game" element={<Game/>}/>
                     <Route path="/login" element={<Login/>}/>
+                    {user?.role === 2 && <Route path="/manage-users" element={<ManageUsers/>}/>}
                 </Routes>
             </div>
     );

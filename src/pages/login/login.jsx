@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useUser} from "../../contexts/UserContext"
 
 function Login() {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const {login} = useUser();
 
     const navigate = useNavigate();
 
@@ -30,7 +32,22 @@ function Login() {
         }).then((response) => {
             if (response.status.valueOf() === 200) {
                 alert("Login successful");
-                navigate("/game")
+                fetch('/user/logged', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.id && data.permission) {
+                            login(data.id, data.permission)
+                        }
+                        navigate("/game")
+                    })
+                    .catch(error => {
+                        console.log('Error getting user info', error)
+                    })
                 return response.json();
             } else {
 
