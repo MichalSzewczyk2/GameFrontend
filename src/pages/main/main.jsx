@@ -7,14 +7,12 @@ const App = () => {
     const [pages, setPages] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [topGames, setTopGames] = useState([]);
+    const averageRatings = [];
 
     useEffect(() => {
         async function fetchAndDisplayTopGames() {
-            let data = [];
-
-            get('review').then((response) => {
-                data = response;
-            })
+            let response = await get('review');
+            let data = response;
 
             // Obliczam średnią ocenę dla każdej gry
             const ratings = {};
@@ -27,11 +25,14 @@ const App = () => {
                 }
             });
 
-            const averageRatings = [];
+            // console.log(ratings);
+
             for (const gameid in ratings) {
                 const averageRating = ratings[gameid].sum / ratings[gameid].count;
                 averageRatings.push({ gameid, averageRating });
             }
+
+            // console.log(averageRatings);
 
             // Sortuję gry od najwyższej do najniższej średniej oceny
             averageRatings.sort((a, b) => b.averageRating - a.averageRating);
@@ -39,25 +40,35 @@ const App = () => {
             // Wybieram 3 najlepsze gry
             const topGames = averageRatings.slice(0, 3);
 
-            for (let i = 0; i < topGames.length; i++) {
-                const gameResponse = await fetch(`http://127.0.0.1:8080/game/${topGames[i].gameid}`);
-                const gameData = await gameResponse.json();
+            //console.log(topGames);
+            let gameResponse = [];
 
-                // Łączę informacje o grze z oceną
-                topGames[i] = { ...gameData, averageRating: topGames[i].averageRating };
-            }
+            get(`game`).then((topdata) => {
+                gameResponse = topdata;
+            })
+            
+            console.log(gameResponse);
+
+            gameResponse.forEach(game => {
+                console.log('in');
+                for (let i = 0; i < topGames.length; i++) {
+                    if(game.id == topGames[i].gameid) {
+                        topGames[i] = { gameResponse: game.cover, averageRating: topGames[i].averageRating };
+                    }
+                }
+            });
+
+            
+                console.log('in '+ gameResponse);
+
+
+            console.log(topGames);
 
             setTopGames(topGames);
-        }
-
-        fetchAndDisplayTopGames();
-
+            }
 
         async function fetchData() {
-
-            get('game/premieres/p').then((data) => {
-                setData(data);
-            })
+            let data = await get('game/premieres/p');
 
             const pages = [];
             let howManyPages = 3;
@@ -71,9 +82,13 @@ const App = () => {
             setPages(pages);
         }
 
+        // console.log(pages);
+
+        fetchAndDisplayTopGames();
         fetchData();
     }, []);
-    
+
+
     function formatDate(epochTime) {
         const date = new Date(epochTime);
 
