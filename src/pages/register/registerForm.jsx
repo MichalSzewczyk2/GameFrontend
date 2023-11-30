@@ -22,7 +22,7 @@ function Register() {
         console.log(userJSON);
 
 
-        fetch("http://127.0.0.1:8080/user", {
+        fetch("http://localhost:8080/user", {
             method: "POST",
             headers: {
                 "Access-Control-Allow-Origin": "*",

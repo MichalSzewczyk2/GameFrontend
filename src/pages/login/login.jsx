@@ -20,12 +20,12 @@ function Login() {
         console.log(userJSON);
 
 
-        fetch("http://127.0.0.1:8080/login/", {
+        fetch("http://localhost:8080/login/", {
             method: "POST",
             headers: {
-                "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json",
             },
+            credentials: 'include',
             body: JSON.stringify(user)
         }).then((response) => {
             if (response.status.valueOf() === 200) {
