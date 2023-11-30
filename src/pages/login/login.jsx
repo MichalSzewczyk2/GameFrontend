@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useUser} from "../../contexts/UserContext"
+import {get} from "../../utils/apiActions";
+import "./login.scss";
 
 function Login() {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const {login} = useUser();
 
     const navigate = useNavigate();
 
@@ -14,10 +18,6 @@ function Login() {
             username,
             password,
         };
-
-        const userJSON = JSON.stringify(user);
-
-        console.log(userJSON);
 
 
         fetch("http://localhost:8080/login/", {
@@ -30,7 +30,16 @@ function Login() {
         }).then((response) => {
             if (response.status.valueOf() === 200) {
                 alert("Login successful");
-                navigate("/game")
+                get('user/logged')
+                    .then(data => {
+                        if (data.id && data.permission) {
+                            login(data.id, data.permission)
+                        }
+                        navigate("/")
+                    })
+                    .catch(error => {
+                        console.log('Error getting user info', error)
+                    })
                 return response.json();
             } else {
 
@@ -53,7 +62,7 @@ function Login() {
 
     return (
 
-        <div>
+        <div className="login-page">
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>

@@ -3,23 +3,18 @@ import Register from "./pages/register/registerForm"
 import Game from "./pages/game/game";
 import Menu from "./components/elements/menu"
 import Login from "./pages/login/login";
-import Main from "./pages/main/main";
 import GamePage from "./pages/gamePage/gamePage";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import './App.css';
-import {UserProvider, useUser} from "./contexts/UserContext";
+import {useUser} from "./contexts/UserContext";
+import ManageUsers from "./pages/manageUsers/manageUsers"
+import {get} from "./utils/apiActions";
 
 function App() {
     const {user, login} = useUser();
     useEffect(() => {
         console.log('Getting info about the user')
-        fetch('http://127.0.0.1:8080/user/logged', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => response.json())
+        get('user/logged')
             .then(data => {
                 if (data.id && data.permission) {
                     login(data.id, data.permission)
@@ -30,7 +25,7 @@ function App() {
             })
     }, [])
     return (
-            <div>
+            <div className="main-layout">
                 <Menu/>
                 <Routes>
                     <Route path="/"/>
@@ -38,7 +33,7 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/game" element={<Game/>}/>
                     <Route path="/login" element={<Login/>}/>
-                    <Route path="/main" element={<Main/>}/>
+                    {user?.role === 2 && <Route path="/manage-users" element={<ManageUsers/>}/>}
                 </Routes>
             </div>
     );

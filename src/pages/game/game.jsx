@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {get} from "../../utils/apiActions";
 import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
@@ -35,12 +36,6 @@ const App = () => {
         )
     }
 
-    const fetchData = async () => {
-        const response = await fetch("http://127.0.0.1:8080/game/", {credentials: 'include'});
-        const data = await response.json();
-        setData(data);
-    };
-
     useEffect(() => {
         const sortGames = (a, b) => {
             if (sortType === 'alpha_asc') return a.title.toUpperCase().localeCompare(b.title.toUpperCase())
@@ -53,7 +48,9 @@ const App = () => {
     }, [sortType]);
 
     useEffect(() => {
-        fetchData();
+        get('game').then((data) => {
+            setData(data);
+        });
     }, []);
 
     const filteredData = data.filter(
