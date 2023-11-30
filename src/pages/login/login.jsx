@@ -35,7 +35,7 @@ function Login() {
                         if (data.id && data.permission) {
                             login(data.id, data.permission)
                         }
-                        navigate("/game")
+                        navigate("/")
                     })
                     .catch(error => {
                         console.log('Error getting user info', error)

@@ -18,6 +18,7 @@
     display: flex;
     /*margin-bottom: -100%;*/
     max-height: 40rem;
+    min-width: 100%;
     overflow: hidden;
     object-fit: cover;
     object-position: 0 0;
