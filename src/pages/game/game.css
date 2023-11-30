@@ -1,3 +1,9 @@
+
+
+.form-control {
+    width: 200px;
+    margin: 10px !important;
+}
 .game-filter-sort{
     float: right;
     margin-top: 2rem;

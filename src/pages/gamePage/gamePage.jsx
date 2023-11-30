@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import './gamePage.css'
 import {useLocation} from "react-router-dom";
 
-export function GameDataLine({name, value}) {
+export function GameDataLine({ name, value }) {
     return (
         <div>
             <span className='game_card_line_name'>{name}: </span>
@@ -21,7 +21,7 @@ const App = (props) => {
     }, [])
 
     function getGameData() {
-        fetch("http://127.0.0.1:8080/game/" + game, {
+        fetch("http://localhost:8080/game/" + game, {
             method: 'GET',
             headers: {
                 "Access-Control-Allow-Origin": "*",
