@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './menu.css'
 import {useUser} from "../../contexts/UserContext";
 
-export function Menu(props) {
+export function Menu() {
 
     const {user, logout} = useUser();
 
@@ -20,7 +20,7 @@ export function Menu(props) {
         menuItems.push({ name: 'Register', path: '/register' })
     } else {
         if (user.role === 2) {
-            menuItems.push({ name: 'Admin', path: '/admin' })
+            menuItems.push({ name: 'Manage Users', path: '/manage-users' })
         }
     }
 
