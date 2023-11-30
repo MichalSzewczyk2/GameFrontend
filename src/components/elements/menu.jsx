@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import './menu.css'
+import {useUser} from "../../contexts/UserContext";
 
 export function Menu(props) {
 
-    console.log(props);
+    const {user, logout} = useUser();
 
     const navigate = useNavigate()
 
@@ -16,12 +17,16 @@ export function Menu(props) {
     ]
 
 
-    if (!props.user?.permissions) {
+    if (!user) {
         menuItems.push({ name: 'Log In', path: '/login' })
         menuItems.push({ name: 'Register', path: '/register' })
+    } else {
+        if (user.role === 2) {
+            menuItems.push({ name: 'Admin', path: '/admin' })
+        }
     }
 
-    function logout() {
+    function logoutAction() {
         fetch('/api/auth/logout', {
             method: 'POST',
             headers: {
@@ -31,7 +36,7 @@ export function Menu(props) {
         }).then(response => {
             if (response.ok) {
                 console.log('logout success')
-                props.setUser(null)
+                logout()
                 navigate('/')
             } else {
                 console.log('logout failed')
@@ -39,6 +44,7 @@ export function Menu(props) {
             }
         })
     }
+    console.log(user)
 
     return (
         <div className='menu'>
@@ -48,8 +54,8 @@ export function Menu(props) {
                 </div>,
             )}
 
-            {props.user?.permissions && <div className='menu_item'>
-                <button className='menu_btn' onClick={logout}>Log Out</button>
+            {user && <div className='menu_item'>
+                <button className='menu_btn' onClick={logoutAction}>Log Out</button>
             </div>}
 
         </div>

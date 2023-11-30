@@ -36,7 +36,7 @@ const App = () => {
     }
 
     const fetchData = async () => {
-        const response = await fetch("http://127.0.0.1:8081/game/");
+        const response = await fetch("http://localhost:8080/game/", {credentials: 'include'});
         const data = await response.json();
         setData(data);
     };
