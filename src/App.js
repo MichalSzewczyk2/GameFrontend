@@ -12,7 +12,7 @@ function App() {
     const [user, setUser] = useState(null)
     useEffect(() => {
         console.log('Getting info about the user')
-        fetch('/user/logged', {
+        fetch('http://127.0.0.1:8080/user/logged', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
