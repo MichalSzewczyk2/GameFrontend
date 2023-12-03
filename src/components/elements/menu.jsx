@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import './menu.css'
 import {useUser} from "../../contexts/UserContext";
+import {get} from "../../utils/apiActions";
 
 export function Menu() {
 
@@ -12,8 +13,7 @@ export function Menu() {
     const menuItems = [
         { name: 'Home', path: '/main' },
         { name: 'Games', path: '/game' },
-        { name: 'Add Game', path: '/gameAddition' },
-        { name: 'Game List', path: '/gameList' }
+
     ]
 
 
@@ -22,26 +22,18 @@ export function Menu() {
         menuItems.push({ name: 'Register', path: '/register' })
     } else {
         if (user.role === 2) {
-            menuItems.push({ name: 'Manage Users', path: '/manage-users' })
+            menuItems.push({ name: 'Manage Users', path: '/manage-users' },
+                { name: 'Add Game', path: '/gameAddition' },
+                { name: 'Game List', path: '/gameList' })
+
         }
     }
 
     function logoutAction() {
-        fetch('/api/auth/logout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({}),
-        }).then(response => {
-            if (response.ok) {
-                console.log('logout success')
-                logout()
-                navigate('/')
-            } else {
-                console.log('logout failed')
-                window.alert('Logout failed')
-            }
+        get('logout/', null).then(r => {
+            console.log(r);
+            window.location.reload();
+            navigate('/')
         })
     }
     console.log(user)

@@ -49,11 +49,9 @@ const App = (props) => {
 
     return (
         <div className='game_page'>
-
             <img className='image' src={gameData.cover} alt='background'/>
-
+            <div className='buffer'></div>
             <div className='gradient'>
-
             </div>
             <div className='data'>
                 <div className='page'>

@@ -1,12 +1,16 @@
-
+.game-filter-sort{
+    float: right;
+    margin-top: 2rem;
+}
 
 .form-control {
     width: 200px;
     margin: 10px !important;
 }
-.game-filter-sort{
-    float: right;
-    margin-top: 2rem;
+
+.input-label {
+    color: #e3dfec;
+    font-weight: bold;
 }
 
 .select {
@@ -17,7 +21,16 @@
     color: #e3dfec;
 }
 
-.input-label {
-    color: #e3dfec;
-    font-weight: bold;
+
+.gamepage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 2;
+}
+
+.gameTable {
+    margin-top: 10vh;
+    align-items: center;
+    font-size: 1.5rem;
 }

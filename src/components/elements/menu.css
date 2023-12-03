@@ -19,38 +19,43 @@
     font-size: 1em;
     font-weight: 500;
     padding: 0 1em;
+    transition: 0.5s;
 }
 
-.menu_item > a,.menu_btn > a {
+.menu_item > a {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    color: var(--main-text-color);
+    color: white;
     text-decoration: none;
     font-size: 1em;
     font-weight: bold;
     padding: 0 1em;
 }
 
-.menu_item:hover .menu_btn:hover{
-    background-color: var(--dark-gray);
-    cursor: pointer;
-}
-
-.menu_item a:hover, .menu_btn:hover {
-    color: var(--highlight-blue);
-    background-color: var(--dark-gray);
+.menu_item:hover{
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 .menu_btn {
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    border-radius: 8px;
     width: 100%;
     border: none;
-    border-radius: 0;
-    background-color: var(--deep-gray);
     font-weight: bold;
+    transition: 0.5s;
+}
+
+.menu_btn:hover {
+    background-image: linear-gradient(144deg, #00DDEB, #AF40FF, #5B42F3 50%);
+    color: white;
+}
+
+.menu_btn:active {
+    font-weight: normal;
 }
 
 @media screen and (max-width: 1024px) {

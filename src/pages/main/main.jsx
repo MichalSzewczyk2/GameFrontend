@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from "react";
 import {get} from "../../utils/apiActions";
+import {useNavigate} from "react-router-dom";
+import './main.css'
 
 const App = () => {
+
+    const navigate = useNavigate()
 
     const [data, setData] = useState([]);
     const [pages, setPages] = useState([]);
@@ -44,9 +48,9 @@ const App = () => {
 
             gameResponse.forEach(game => {
                 for (let i = 0; i < topGames.length; i++) {
-                    console.log(game.id, topGames[i].gameid);
+                    //console.log(game.id, topGames[i].gameid);
                     if(game.id == topGames[i].gameid) {
-                        topGames[i] = { ...topGames[i], cover: game.cover };
+                        topGames[i] = { ...topGames[i], title: game.title, cover: game.cover };
                     }
                 }
             });
@@ -88,6 +92,10 @@ const App = () => {
         return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     }
 
+    const goToGamePage =  async gameId => {
+        navigate('/gamePage', {state: {gameId}})
+    }
+
     return (
         <>
             <h1>PREMIERES:</h1>
@@ -97,7 +105,7 @@ const App = () => {
                 </button>
                 <span className={"premiere-placeholder"}>
                     {pages[currentPage] && pages[currentPage].map((item, index) => (
-                        <div className={"premiere-item"} key={index}>
+                        <div className={"premiere-item"} key={index} onClick={() => {goToGamePage(item.id)}}>
                             <div className={"premiere-foto"}><img src={item.cover} alt={item.title}/></div>
                             <h3>{item.title}</h3>
                             <h5>{formatDate(item.release_date)}</h5>
@@ -123,8 +131,8 @@ const App = () => {
                         }
 
                         return (
-                            <div className={"premiere-item"} key={index}>
-                                <div className={"premiere-foto"}><img src={game.cover} alt={game.title}/></div>
+                            <div className={"premiere-item"} key={index} onClick={() => {goToGamePage(game.gameid)}}>
+                                <div className={"premiere-foto"}><img src={game.cover} alt={game.title} /></div>
                                 <h2>{game.title}</h2>
                                 <h2 style={{ color: color }}>⭐  {game.averageRating}</h2>
                             </div>
@@ -137,7 +145,6 @@ const App = () => {
 
         </>
     );
-
 }
 
 export default App;

@@ -14,6 +14,9 @@ export function Table({data}) {
     for (let row of data) {
         rows.push(
             <tr onClick={() => {goToGamePage(row.id)}}>
+                <td>
+                    <img className='listImage' src={row.cover} alt='cover'></img>
+                </td>
                 <td>{row.title}</td>
                 <td>{row.developer}</td>
                 <td>{row.age_rating}</td>
@@ -22,6 +25,9 @@ export function Table({data}) {
     return (
         <table>
             <thead>
+                <th>
+
+                </th>
                 <th>Title</th>
                 <th>Developer</th>
                 <th>Age rating</th>

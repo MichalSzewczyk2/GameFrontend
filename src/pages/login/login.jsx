@@ -42,7 +42,7 @@ function Login() {
                     })
                 return response.json();
             } else {
-
+                alert("Login failed!");
                 throw new Error("Something went wrong");
             }
         })

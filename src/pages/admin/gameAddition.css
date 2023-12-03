@@ -72,7 +72,7 @@ textarea {
     width: 50px; /* Adjust the width as needed, considering the margin-left of 10px */
 }
 
-.button-21 {
+.button-22 {
     margin: 0 auto;
     margin-bottom: 1rem;
     align-items: center;
@@ -98,13 +98,13 @@ textarea {
     cursor: pointer;
 }
 
-.button-21:active,
-.button-21:hover {
+.button-22:active,
+.button-22:hover {
     outline: 0;
 }
 
 @media (min-width: 768px) {
-    .button-21 {
+    .button-22 {
         font-size: 24px;
         min-width: 196px;
     }

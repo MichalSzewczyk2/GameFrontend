@@ -17,3 +17,16 @@ export const patch = (url, data) => {
         .then((response) => response.json())
         .catch((err) => console.log(err));
 }
+
+export const post = (url, data) => {
+    return fetch(`${API_URL}/${url}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+        credentials: "include"
+    })
+        .then((response) => response.json())
+        .catch((err) => console.log(err));
+}

@@ -8,8 +8,24 @@ td {
     cursor: pointer;
 }
 
+tr {
+    height: 20vh;
+    min-height: 15vh;
+}
+
 table {
+    width: 70vw;
+    align-items: center;
     border-spacing: 0;
 }
 
-tr:hover {background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);}
+tr:hover {
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+}
+
+.listImage {
+    overflow: hidden;
+    object-fit: cover;
+    max-height: 10vh;
+    max-width: 10vh;
+}
