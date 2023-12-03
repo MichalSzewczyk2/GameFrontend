@@ -10,7 +10,7 @@ export function Menu() {
     const navigate = useNavigate()
 
     const menuItems = [
-        { name: 'Home', path: '/' },
+        { name: 'Home', path: '/main' },
         { name: 'Games', path: '/game' },
         { name: 'Add Game', path: '/gameAddition' },
         { name: 'Game List', path: '/gameList' }
