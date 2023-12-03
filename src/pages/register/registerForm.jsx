@@ -9,12 +9,14 @@ function Register() {
         e.preventDefault();
 
         const permission = 1;
+        const blocked = false;
 
         const user = {
             username,
             password,
             email,
-            permission
+            permission,
+            blocked
         };
 
         const userJSON = JSON.stringify(user);

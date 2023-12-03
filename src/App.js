@@ -13,6 +13,7 @@ import {get} from "./utils/apiActions";
 import GameEdition from "./pages/admin/gameEdition";
 import GameList from "./pages/admin/gameList";
 import Main from "./pages/main/main";
+import Library from "./pages/library/library"
 
 function App() {
     const {user, login} = useUser();
@@ -38,10 +39,12 @@ function App() {
                     <Route path="/game" element={<Game/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/main" element={<Main/>}/>
-                    {user?.role === 2 && <Route path="/manage-users" element={<ManageUsers/>}/>}
+                    <Route path="/manage-users" element={<ManageUsers/>}/>
                     <Route path="/gameAddition" element={<GameAddition/>}/>
                     <Route path="/gameEdition" element={<GameEdition/>}/>
                     <Route path="/gameList" element={<GameList/>}/>
+                    <Route path="/library" element={<Library/>}/>
+                    {/*<Route path="/wishlist" element={}/>*/}
                 </Routes>
             </div>
     );

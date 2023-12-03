@@ -49,7 +49,7 @@ const App = () => {
             publisher,
             description
         })
-        const response = await fetch("http://127.0.0.1:8080/game/", {
+        const response = await fetch("http://localhost:8080/game", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,6 +67,7 @@ const App = () => {
                 'addition_date': additionDate,
                 'cover': imageLink,
             }),
+            credentials: "include"
         });
         const body = await response.json();
 

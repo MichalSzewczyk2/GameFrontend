@@ -21,6 +21,12 @@ export function Menu() {
         menuItems.push({ name: 'Log In', path: '/login' })
         menuItems.push({ name: 'Register', path: '/register' })
     } else {
+        if (user.role === 1) {
+            menuItems.push(
+                { name: 'Library', path: '/library'},
+                { name: 'Wishlist', path: '/wishlist'}
+            )
+        }
         if (user.role === 2) {
             menuItems.push({ name: 'Manage Users', path: '/manage-users' },
                 { name: 'Add Game', path: '/gameAddition' },
