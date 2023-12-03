@@ -122,35 +122,28 @@ textarea {
     width: 100%;
 }
 
-.preview .gradient {
+.preview .gradientPreview {
+    z-index: 1;
     background-image: linear-gradient(to bottom, rgba(56, 59, 83, 0), rgba(56, 59, 83, 1));
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: 10rem;
-    margin-top: -11rem;
+    height: 30vh;
+    margin-top: -30vh;
 }
 
-.preview .image {
-    z-index: -1;
-    display: flex;
-    /*margin-bottom: -100%;*/
+.preview .imagePreview {
+    min-width: 100%;
+    margin-top: 53px;
     max-height: 40rem;
     overflow: hidden;
     object-fit: cover;
     object-position: 0 0;
-    /*!*-webkit-mask-image: linear-gradient(black, transparent);*!*/
-    /*mask-image: linear-gradient(black, transparent);*/
+
 }
 
-.preview .bottom {
-    background-color: #383b53;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.preview .data {
+.preview .dataPreview {
+    z-index: 1;
     padding-top: 4rem;
     padding-bottom: 10rem;
     display: flex;
@@ -159,22 +152,28 @@ textarea {
     background-color: #383b53;
 }
 
-.preview .page {
+.preview .pagePreview {
     justify-content: flex-start;
 
 }
 
-.preview .cover {
+.preview .coverPreview {
     justify-content: center;
     border-radius: 8px;
     max-width: 20%;
     min-width: 196px;
-    margin-left: 15rem;
+    margin: 0 auto;
     margin-bottom: 2rem;
+    overflow: hidden;
+    object-fit: fill;
+    padding: 0;
+    transform: none;
 }
 
-.preview .details {
+.preview .detailsPreview {
+    margin-top: 5vh;
     display: table;
+    min-width: 30vw;
 }
 
 .preview .game_card_line_name {
@@ -192,12 +191,51 @@ textarea {
     font-size: 1.5rem;
 }
 
-.preview .image_side {
+.preview .image_sidePreview {
     display: flex;
     flex-direction: column;
     max-width: 30%;
 }
 
-.preview .title {
+.preview .titlePreview {
+    z-index: 1;
     font-size: 3rem;
+    color: #e3dfec;
+    min-height: 4rem;
+}
+
+input, textarea {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #fafafa;
+    background-color: #3a3c4f;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input:focus, textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 3px #aadaff;
+}
+
+#age_rating {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #fafafa;
+    background-color: #3a3c4f;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#age_rating:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 3px #aadaff;
 }

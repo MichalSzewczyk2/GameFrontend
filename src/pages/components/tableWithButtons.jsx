@@ -28,10 +28,10 @@ export function TableWithButtons({ data }) {
             <td>{row.developer}</td>
             <td>{row.age_rating}</td>
             <td>
-                <button onClick={() => handleEditClick(row.id)}>Edit</button>
+                <button className='editGameButton' onClick={() => handleEditClick(row.id)}>Edit</button>
             </td>
             <td>
-                <button onClick={() => handleDeleteClick(row.id)}>Delete</button>
+                <button className='deleteGameButton' onClick={() => handleDeleteClick(row.id)}>Delete</button>
             </td>
         </tr>
     ));

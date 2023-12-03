@@ -59,7 +59,7 @@ const App = () => {
     )
 
     return (
-        <div>
+        <div  className='gamepage'>
             <div className='game-filter-sort'>
                 <FormControl className='form-control'>
                     <InputLabel className='input-label'> Age </InputLabel>

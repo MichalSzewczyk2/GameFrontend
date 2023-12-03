@@ -86,7 +86,6 @@ const App = () => {
             systemRequirements,
             releaseDate,
             genre,
-            releaseDate,
             developer,
             ageRating,
             publisher,
@@ -179,7 +178,7 @@ const App = () => {
                         <textarea type='text' id='description' name='description' value={description}
                                   onChange={e => setDescription(e.target.value)}/>
                         <br/>
-                        <button className="button-21" type='generate'>Generate</button>
+                        <button className="button-22" type='generate'>Generate</button>
                     </form>
                 </div>
             </div>
@@ -190,15 +189,15 @@ const App = () => {
                             <div className="preview">
                                 <div className='game_page'>
 
-                                    <img className='image' src={gameData.cover} alt='background'/>
+                                    <img className='imagePreview' src={gameData.cover} alt='background'/>
 
-                                    <div className='gradient'>
+                                    <div className='gradientPreview'>
 
                                     </div>
-                                    <div className='data'>
-                                        <div className='page'>
-                                            <h1 className='title'> {gameData.title} </h1>
-                                            <div className='details'>
+                                    <div className='dataPreview'>
+                                        <div className='pagePreview'>
+                                            <h1 className='titlePreview'> {gameData.title} </h1>
+                                            <div className='detailsPreview'>
                                                 <GameDataLine name='Platform' value={gameData.platform}/>
                                                 <GameDataLine name='Genre' value={gameData.genre}/>
                                                 <GameDataLine name='Release date' value={new Date(gameData.release_date).toLocaleString().substring(0,10)}/>
@@ -208,17 +207,17 @@ const App = () => {
                                                 <GameDataLine name='Description' value={gameData.description}/>
                                             </div>
                                         </div>
-                                        <div className='image_side'>
-                                            <img className='cover' src={gameData.cover} alt='game cover'/>
-                                            <button className="button-21" role="button">Add to wishlist</button>
-                                            <button className="button-21" role="button">Add to library</button>
+                                        <div className='image_sidePreview'>
+                                            <img className='coverPreview' src={gameData.cover} alt='game cover'/>
+                                            <button className="button-22" role="button">Add to wishlist</button>
+                                            <button className="button-22" role="button">Add to library</button>
                                         </div>
                                     </div>
                                     <div className='bottom'></div>
 
                                 </div>
                             </div>
-                            <button className="button-21" type='generate'>Confirm</button>
+                            <button className="button-22" type='generate'>Confirm</button>
                         </form>
                     ) : (
                         <div className="preview">
