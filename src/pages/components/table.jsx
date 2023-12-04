@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import './table.css'
 import {useNavigate} from "react-router-dom";
 
-export function Table({data}) {
+export function Table({data}, {button}) {
     const navigate = useNavigate()
 
     let rows = [];
@@ -25,9 +25,7 @@ export function Table({data}) {
     return (
         <table>
             <thead>
-                <th>
-
-                </th>
+                <th></th>
                 <th>Title</th>
                 <th>Developer</th>
                 <th>Age rating</th>

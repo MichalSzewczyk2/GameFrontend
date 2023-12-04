@@ -14,6 +14,7 @@ import GameEdition from "./pages/admin/gameEdition";
 import GameList from "./pages/admin/gameList";
 import Main from "./pages/main/main";
 import Library from "./pages/library/library"
+import Wishlist from "./pages/wishlist/wishlist"
 
 function App() {
     const {user, login} = useUser();
@@ -44,7 +45,7 @@ function App() {
                     <Route path="/gameEdition" element={<GameEdition/>}/>
                     <Route path="/gameList" element={<GameList/>}/>
                     <Route path="/library" element={<Library/>}/>
-                    {/*<Route path="/wishlist" element={}/>*/}
+                    <Route path="/wishlist" element={<Wishlist/>}/>
                 </Routes>
             </div>
     );

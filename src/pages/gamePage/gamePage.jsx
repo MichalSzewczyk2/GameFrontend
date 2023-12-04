@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './gamePage.css'
 import {useLocation} from "react-router-dom";
+import {post} from "../../utils/apiActions";
 
 export function GameDataLine({ name, value }) {
     return (
@@ -39,10 +40,18 @@ const App = (props) => {
     }
 
     function addToLibrary(id){
+        let js = {
+            id: id
+        }
+        post('library', js);
         console.log("user: " + props.user + ", game: " + id);
     }
 
     function addToWishlist(id){
+        let js = {
+            id: id
+        }
+        post('wishlist', js);
         console.log("user: " + props.user + ", game: " + id);
     }
 
@@ -70,10 +79,10 @@ const App = (props) => {
                     <img className='cover' src={gameData.cover} alt='game cover'/>
                     <button className="button-21" role="button" onClick={() => {
                         addToLibrary(gameData.id)
-                    }}>Add to wishlist</button>
+                    }}>Add to library</button>
                     <button className="button-21" role="button" onClick={() => {
                         addToWishlist(gameData.id)
-                    }}>Add to library</button>
+                    }}>Add to wishlist</button>
                 </div>
             </div>
             <div className='bottom'></div>

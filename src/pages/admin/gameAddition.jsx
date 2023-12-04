@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import './gameAddition.css'
 import {GameDataLine} from "../gamePage/gamePage";
 
-
 const App = () => {
 
     const [data, setData] = useState([]);

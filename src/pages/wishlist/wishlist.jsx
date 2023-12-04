@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
-import {Table} from "../components/tableLib";
+import {Table} from "../components/tableWish";
 
 const App = () => {
 
@@ -47,7 +47,7 @@ const App = () => {
     }, [sortType]);
 
     useEffect(() => {
-        get('library/user').then((data) => {
+        get('wishlist/user').then((data) => {
             setData(data);
         });
     }, []);
@@ -111,7 +111,7 @@ const App = () => {
                 </FormControl>
             </div>
             <div className='gameTable'>
-                <Table data={filteredData}></Table>
+                <Table data={filteredData} button={'wishlist'}></Table>
             </div>
         </div>
     )

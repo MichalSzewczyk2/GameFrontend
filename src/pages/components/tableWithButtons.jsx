@@ -14,7 +14,7 @@ export function TableWithButtons({ data }) {
     };
 
     const handleDeleteClick = (gameId) => {
-        const response = fetch("http://127.0.0.1:8081/game/"+gameId, {
+        const response = fetch("http://127.0.0.1:8080/game/"+gameId, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
