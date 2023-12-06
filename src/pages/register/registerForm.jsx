@@ -57,7 +57,7 @@ function Register() {
 
     return (
 
-        <div>
+        <div className="login-page">
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">Email:</label>

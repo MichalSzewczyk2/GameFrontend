@@ -44,6 +44,7 @@ const App = (props) => {
             id: id
         }
         post('library', js);
+        alert("Added to library!");
         console.log("user: " + props.user + ", game: " + id);
     }
 
@@ -52,6 +53,7 @@ const App = (props) => {
             id: id
         }
         post('wishlist', js);
+        alert("Added to wishlist!");
         console.log("user: " + props.user + ", game: " + id);
     }
 
